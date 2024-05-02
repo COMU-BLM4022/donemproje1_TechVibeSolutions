@@ -87,3 +87,29 @@ Rekabetçi pazar: E-ticaret sektöründe rekabetin yüksek olması, müşteri ka
 ### Rakip Analizi:
 
 Rakiplerimiz genellikle büyük e-ticaret platformlarıdır, geniş ürün yelpazesi ve güçlü marka bilinirliği gibi avantajlara sahiptirler. Ancak, şirketimizin ERPNext kullanımıyla sağladığı veri analizi ve iş süreçlerinin optimize edilmesi konusundaki uzmanlığı, rekabet avantajı sağlar. Rakiplerimizin dezavantajı ise genellikle daha büyük ve karmaşık yapılarıdır, bu da karar alma süreçlerini yavaşlatabilir. Sonuç olarak, ERPNext kullanımı şirketimizi rekabetin önünde tutar ve müşteri memnuniyetini artırır.
+
+## Q4 - İyileştirme (Optimizasyon) Stratejisi
+
+Bu rapor, teknoloji mağazasının satış verilerini analiz ederek, işletmenin performansını değerlendirmek ve stratejik kararlar almak amacıyla hazırlanmıştır. Analizimiz üç temel başlık altında yapılmıştır: şehirlere göre ürün satışları, müşteri sadakati ve ürün performansı.
+
+1. Şehirlere Göre Ürün Satışları Analizi
+
+Satış verilerinin incelenmesi sonucunda, farklı şehirlerde hangi ürünlerin daha fazla talep gördüğünü belirlemek önemlidir. Bu bilgi, stok yönetimi ve talep tahmini açısından kritik bir rol oynamaktadır.
+
+Öneri: Şehirlere göre ürün satış adetlerini içeren grafikler oluşturarak, hangi ürünlerin hangi şehirlerde daha popüler olduğunu net bir şekilde görebiliriz. Bu analiz sonucunda, talebin yoğun olduğu şehirlere daha fazla stok gönderilmesi önerilmektedir. Böylece müşteri memnuniyeti artırılabilir ve kayıpların önüne geçilebilir.
+
+2. Müşteri Sadakati Analizi
+
+Tekrarlayan müşteriler, işletmenin sürekli gelir akışını sağlayan önemli bir unsurdur. Aynı alıcı adresinden farklı zamanlarda yapılan alımlar, müşteri sadakatinin bir göstergesi olabilir.
+
+Öneri: Tekrarlayan müşterilerin tespit edilmesi ve onlara özel indirimler veya teşvikler sunulması müşteri sadakatini artırabilir. Bu indirimler, müşteri memnuniyetini artırırken aynı zamanda müşteri bağlılığını da güçlendirecektir.
+
+3. Ürün Performansı Analizi
+
+Her ürünün satış performansını belirlemek, işletme için stratejik kararlar almak açısından hayati öneme sahiptir. Eğer bir ürün belirli bir eşik değerinin altında satılıyorsa, bu ürünün indirime tabi tutulması veya stoklardan kaldırılması gerekebilir.
+
+Öneri: Ürünlerin aylık satış performansını analiz ederek, düşük performans gösteren ürünlere özel indirimler uygulanabilir veya stoklardan kaldırılabilir. Bu sayede, işletme kaynaklarının daha verimli kullanılması sağlanabilir ve talep edilmeyen ürünlerin depolama maliyeti önlenmiş olur.
+
+### Sonuç
+
+Bu rapor, teknoloji mağazasının satış verileri üzerinden yapılan analizler ve çıkarılan önerileri içermektedir. Şehirlere göre ürün satışlarının analizi, müşteri sadakati ve ürün performansının değerlendirilmesi, işletmenin daha etkili bir şekilde yönetilmesini sağlayacaktır. Alınan stratejik kararlarla birlikte, işletmenin gelirini artırmak ve müşteri memnuniyetini yükseltmek mümkün olacaktır.
