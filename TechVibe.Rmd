@@ -52,3 +52,38 @@ Kullandığı Yazılım, DB ve Diğer Teknolojiler: Python programlama dili kull
 **Veriyi İthal Etme Planı:** Veri seti, CSV formatında olduğu için, ERPNext platformuna kolayca aktarılabilir. İilgili docker konteyenerına CSV dosyası kopyalanacak, ardından ERPNext'in sağladığı araçlar ile CSV dosyası platforma yüklenip ilgili veritabanı tablosuna aktarılacaktır.
 
 **Veriyi Çekme Planı:** Veriyi çekmek için, ERPNext'in sağladığı RESTful API'leri kullanmayı planlıyoruz. API'ler aracılığıyla platformdan veri alabilir ve R programlama dili ile çeşitli analizler yapabiliriz. Özellikle, RESTful API kullanarak veri alımı ve manipülasyonu için kolay bir yöntem olabilir.
+
+## Q3 - İş Tanımı
+
+Bu pozisyon, şirketimizin veri analisti departmanında çalışanlar için ERPNext kullanmasıdır. ERPNext, şirketin verilerini toplamak, depolamak, işlemek ve analiz etmek için kullanılan bir bilgi yönetim sistemidir. Şirket, müşteri siparişlerini, ürün satışlarını ve operasyonel verilerini takip etmek ve optimize etmek için ERPNext kullanmaktadır.
+
+### Aktiviteler ve Rutin Operasyonlar:
+
+1. Müşteri siparişlerini ve ürün satışlarını izlemek ve kaydetmek.
+2. Sipariş verme sürecini analiz etmek ve iyileştirmek.
+3. Veri tabanını güncellemek ve veri bütünlüğünü sağlamak.
+4. Satış verilerini aylık ve günlük raporlar halinde analiz etmek.
+5. Satış trendlerini belirlemek ve stok yönetimini optimize etmek.
+6. Müşteri adreslerini ve satış lokasyonlarını analiz etmek.
+
+### Gelir Modeli 
+
+  Şirket, ürün satışlarından elde edilen gelir üzerinden kazanç sağlar. Ürünlerin fiyatları ve miktarlarına göre değişen satış gelirleri, şirketin ana gelir kaynağını oluşturur. Ayrıca, müşterilere sunulan hizmetler veya ek ücretli özellikler de gelir modeline katkı sağlayabilir.
+
+### Zorluklar 
+
+  Büyük veri hacmi ile başa çıkma: Yüksek sipariş hacmi ve müşteri verisi, veri analizi ve işleme süreçlerini karmaşıklaştırabilir.
+Veri bütünlüğünün sağlanması: Müşteri adresleri ve satış verilerinin doğru ve güncel tutulması zor olabilir.
+Rekabetçi pazar: E-ticaret sektöründe rekabetin yüksek olması, müşteri kazanımı ve tutma stratejilerini karmaşıklaştırabilir.
+
+### Avantajlar
+
+**Veri analizi ile optimize edilmiş iş süreçleri:** ERPNext kullanarak yapılan veri analizi, işletmenin operasyonel verimliliğini artırabilir.
+
+**Satış trendlerinin belirlenmesi:** ERPNext, işletmeye satış trendleri hakkında önemli içgörüler sağlayarak stratejik karar alma süreçlerini destekleyebilir.
+
+**Müşteri memnuniyetinin artırılması:** Veri analizi sayesinde müşteri ihtiyaçları ve tercihleri daha iyi anlaşılabilir ve müşteri memnuniyeti artırılabilir.
+
+### Rakip Analizi:
+
+Rakiplerimiz genellikle büyük e-ticaret platformlarıdır, geniş ürün yelpazesi ve güçlü marka bilinirliği gibi avantajlara sahiptirler. Ancak, şirketimizin ERPNext kullanımıyla sağladığı veri analizi ve iş süreçlerinin optimize edilmesi konusundaki uzmanlığı, rekabet avantajı sağlar. Rakiplerimizin dezavantajı ise genellikle daha büyük ve karmaşık yapılarıdır, bu da karar alma süreçlerini yavaşlatabilir. Sonuç olarak, ERPNext kullanımı şirketimizi rekabetin önünde tutar ve müşteri memnuniyetini artırır.
