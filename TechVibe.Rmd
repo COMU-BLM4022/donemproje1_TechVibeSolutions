@@ -25,3 +25,30 @@ Kullandığı Yazılım, DB ve Diğer Teknolojiler: Python programlama dili kull
 **Platformun API'si:** ERPNext, RESTful API sağlar ve bu API aracılığıyla birçok özellik erişilebilir hale gelir.
 
 **Seçim Sebebi:** ERPNext, geniş işlevsellik yelpazesiyle iş süreçlerini tek bir platformda birleştirerek şirketlerin verimliliğini artırır. Açık kaynaklı ve özgür lisanslı olması, yazılımın istenilen şekilde özelleştirilebilmesine olanak tanırken, büyük ve aktif topluluğu sayesinde sürekli güncellenir ve geliştirilir. Modern teknolojiler kullanması, esneklik ve performans sağlarken, Docker ile kolay kurulumu ve kullanımı, hızlı şekilde işletmeye alınmasını sağlar.
+
+## Q2 - Dataset Tanımı
+
+**Adres:** [Sales Data Analysis](https://www.kaggle.com/datasets/beekiran/sales-data-analysis)
+
+**İçerik:** Bu veri seti, bir teknoloji ürünleri satan mağazanın son 12 aydaki satış verilerini içerir. Her satır, bir ürün satışını temsil eder ve aşağıdaki özelliklere sahiptir.
+
+1. Order ID: Bir siparişin benzersiz kimliği.
+2. Product: Satın alınan ürünün adı veya tanımı.
+3. Quantity Ordered: Satın alınan ürün miktarı.
+4. Price Each: Birim ürün fiyatı.
+5. Order Date: Siparişin yapıldığı tarih ve saat.
+6. Purchase Address: Siparişin gönderileceği adres.
+7. Month: Siparişin yapıldığı ay.
+8. Sales: Siparişin toplam satış tutarı.
+9. City: Siparişin gönderileceği şehir.
+10. Hour: Siparişin yapıldığı saat.
+
+**Verinin Üretimi/Toplanması:** Veri seti, teknoloji ürünleri satan kurgusal bir mağazanın örnek satış verilerinden oluşmaktadır ve Kaggle platformundan alınmıştır. 
+
+**Formatı:** CSV
+
+**Boyutu:** 22.44 MB (372.441 satır, 11 sütun)
+
+**Veriyi İthal Etme Planı:** Veri seti, CSV formatında olduğu için, ERPNext platformuna kolayca aktarılabilir. İilgili docker konteyenerına CSV dosyası kopyalanacak, ardından ERPNext'in sağladığı araçlar ile CSV dosyası platforma yüklenip ilgili veritabanı tablosuna aktarılacaktır.
+
+**Veriyi Çekme Planı:** Veriyi çekmek için, ERPNext'in sağladığı RESTful API'leri kullanmayı planlıyoruz. API'ler aracılığıyla platformdan veri alabilir ve R programlama dili ile çeşitli analizler yapabiliriz. Özellikle, RESTful API kullanarak veri alımı ve manipülasyonu için kolay bir yöntem olabilir.
