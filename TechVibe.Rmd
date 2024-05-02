@@ -1,0 +1,27 @@
+---
+title: "Bilgi Yönetim Sistemleri Rapor 1"
+output: html_document
+---
+
+```
+Kayra Öksüz - 200401043
+Şirvan Tedbirli - 210401104
+Selen Bal - 200401024
+Hicret Akkuç - 180401062
+```
+
+
+## Q1 - IMS Platformunun Belirlenmesi
+
+**Platformun İsmi:** ERPNext
+
+**Lisansı:** GNU General Public License v3.0
+
+**Kısa Tarihçe:** ERPNext, WebNotes Technologies Pvt Ltd tarafından geliştirilmiştir. İlk olarak 2008 yılında piyasaya sürülen yazılım, hızla büyüyerek küresel bir topluluğa dönüşmüştür. Günümüzde aktif olarak geliştirilmekte ve kullanılmaktadır.
+
+**Özellikler:** Finans Yönetimi, Satış Yönetimi, Satın Alma ve Tedarik Zinciri Yönetimi, Stok Yönetimi, İnsan Kaynakları Yönetimi, Üretim Yönetimi, Proje Yönetimi, Raporlama ve Analiz
+Kullandığı Yazılım, DB ve Diğer Teknolojiler: Python programlama dili kullanılarak geliştirilmiş ve MongoDB veritabanını kullanmaktadır.
+
+**Platformun API'si:** ERPNext, RESTful API sağlar ve bu API aracılığıyla birçok özellik erişilebilir hale gelir.
+
+**Seçim Sebebi:** ERPNext, geniş işlevsellik yelpazesiyle iş süreçlerini tek bir platformda birleştirerek şirketlerin verimliliğini artırır. Açık kaynaklı ve özgür lisanslı olması, yazılımın istenilen şekilde özelleştirilebilmesine olanak tanırken, büyük ve aktif topluluğu sayesinde sürekli güncellenir ve geliştirilir. Modern teknolojiler kullanması, esneklik ve performans sağlarken, Docker ile kolay kurulumu ve kullanımı, hızlı şekilde işletmeye alınmasını sağlar.
