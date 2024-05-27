@@ -102,3 +102,100 @@ Veri setini ERPNext platformuna entegre etmek için izlenen adımlar aşağıda 
 3. **Veri Setinin ERPNext'e Aktarılması:**
    - ERPNext'in sağladığı panel kullanılarak CSV dosyasındaki veriler platforma aktarıldı.
 
+## Q5 : Yapılması planlanan veri analizi
+
+
+```{r include=FALSE}
+# Gerekli kütüphaneleri yükleyin
+library(httr)
+library(jsonlite)
+
+# ERPNext API URL'i
+url <- "http://localhost:8080/api/resource/newdoc/1"
+
+api_key <- "fa488bc46721e44"
+api_secret <- "091837bb3acec3f"
+
+# API anahtarlarını kullanarak Authorization başlığı oluşturma
+headers <- add_headers(
+  "Authorization" = paste("token", api_key, ":", api_secret)
+)
+
+# GET isteğini yap
+response <- GET(url, headers)
+
+# Yanıtı kontrol et ve verileri al
+if (status_code(response) == 200) {
+  data <- content(response, as = "text", encoding = "UTF-8")
+  json_data <- fromJSON(data)
+  print(json_data)
+} else {
+  cat("İstek başarısız oldu. Durum kodu:", status_code(response), "\n")
+  cat(content(response, as = "text", encoding = "UTF-8"), "\n")  # Hata mesajını yazdır
+}
+
+```
+
+#### MÜŞTERİ SADAKATİ ANALİZİ
+
+Tekrarlayan müşterilerin tespit edilmesi ve alışveriş sayılarının hesaplanması, ardından birkaç satırın görüntülenmesi
+
+```{r, echo=FALSE}
+# Tekrarlayan müşterilerin tespit edilmesi ve alışveriş sayılarının hesaplanması
+tekrarlayan_musteriler <- veri %>% group_by(Purchase.Address) %>% summarise(Satis_Sayisi = n()) %>% filter(Satis_Sayisi > 1) %>% arrange(desc(Satis_Sayisi))
+
+# İlk birkaç satırı görüntüleme
+head(tekrarlayan_musteriler)
+```
+
+Tekrarlayan müşterilerin toplam ve ortalama satışlarını hesaplama ve birkaç satır gösterme
+```{r, echo=FALSE}
+# Tekrarlayan müşterilerin toplam ve ortalama satışlarını hesaplama
+musteri_analizi <- veri %>% filter(Purchase.Address %in% tekrarlayan_musteriler$Purchase.Address) %>% group_by(Purchase.Address) %>% summarise(Toplam_Satis = sum(Sales), Ortalama_Satis = mean(Sales), Satis_Sayisi = n()) %>% arrange(desc(Satis_Sayisi))
+
+# İlk birkaç satırı görüntüleme
+head(musteri_analizi)
+```
+
+Teşvik stratejisi oluşturma ve ilk birkaç satırı görüntüleme
+```{r, echo=FALSE}
+# Teşvik stratejisi oluşturma
+musteri_analizi <- musteri_analizi %>% mutate(Tesvik = ifelse(Satis_Sayisi >= 5, "10% indirim", ifelse(Satis_Sayisi >= 3, "5% indirim", "Tesvik yok")))
+
+# İlk birkaç satırı görüntüleme
+head(musteri_analizi)
+```
+
+#### ŞEHİRLERE GÖRE ÜRÜN SATIŞINI ANALİZ ETME
+```{r, echo=FALSE}
+#ŞEHİRLERE GÖRE ÜRÜN SATIŞINI ANALİZ ETME
+
+ggplot(veri, aes(x = City, y = Sales, fill = City)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sehir Bazında Satislar", x = "Sehir", y = "Satis") +
+  scale_fill_brewer(palette = "Set3")  # Renk paleti
+```
+
+#### ÜRÜN PERFORMANSI ANALİZİ
+
+```{r, echo=FALSE}
+# Aylık satışları toplama
+veri$Order.Date <- as.Date(veri$Order.Date)  # Tarih sütununu uygun formata dönüştürme
+
+veri <- veri %>%
+  mutate(YearMonth = format(Order.Date, "%Y-%m"))  # Yıl ve ayı içeren yeni bir sütun oluşturma
+
+urun_performansi <- veri %>%
+  group_by(Product, YearMonth) %>%
+  summarise(Satis_Sayisi = n(), .groups = "drop") %>%
+  arrange(Product, YearMonth)
+
+# Her bir ürünün toplam satış adedini aylık olarak gösteren çizgi grafiği
+ggplot(urun_performansi, aes(x = YearMonth, y = Satis_Sayisi)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Aylik Urun Satis Performansi", x = "Yil-Ay", y = "Satıs Sayisi", fill = "Urun")
+```
+
+
