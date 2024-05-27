@@ -53,3 +53,33 @@ Veriyi toplayan/yaratanlar, kurgusal bir mağazanın satış verilerini oluştur
 
 
 
+## Q3: Veri seti keşifsel analizi 
+
+  Veri setimizde Hour isimli sütun hariç diğer tüm sütunlar iş problemimizi çözmek için gereklidir.
+
+```{r pressure, echo=FALSE}
+dosya_yolu <- "Sales_Data.csv"
+veri <- read.csv(dosya_yolu)
+
+# veri setinin bir kısmını inceliyoruz
+head(veri)
+
+# veri setimizdeki sütunların tipini öğreniyoruz
+sapply(veri, class)
+
+```
+
+
+```{r include=FALSE}
+# Eksik verileri kontrol etme
+sum(is.na(veri))
+
+# Order.Date sütununu Date-time formatına dönüştürme
+veri$Order.Date <- as.POSIXct(veri$Order.Date, format = "%Y-%m-%d %H:%M:%S")
+
+# Hour bilgisini analizlerimizde kullanmayacağımız için o sütunu kaldırıyoruz
+veri <- veri[, -which(names(veri) == "Hour")]
+
+# City sütunu kategorik olduğu için faktöre dönüştürüyoruz
+veri$City <- as.factor(veri$City)
+```
