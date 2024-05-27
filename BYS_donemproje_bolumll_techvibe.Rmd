@@ -198,4 +198,6 @@ ggplot(urun_performansi, aes(x = YearMonth, y = Satis_Sayisi)) +
   labs(title = "Aylik Urun Satis Performansi", x = "Yil-Ay", y = "Satıs Sayisi", fill = "Urun")
 ```
 
+## Q6 : Çalışan platformun gösterildiği sesli anlatımlı video
 
+[Video](https://www.youtube.com/watch?v=K_gCFovDxqg)
