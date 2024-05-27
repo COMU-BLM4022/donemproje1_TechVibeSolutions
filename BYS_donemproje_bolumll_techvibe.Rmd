@@ -18,3 +18,38 @@ library(ggplot2)
 
 Bu rapor, bir teknoloji mağazasının satış verilerini analiz ederek işletme performansını değerlendirmeyi ve stratejik kararlar almayı amaçlamaktadır. İş problemi, mağazanın satış süreçlerini optimize ederek müşteri memnuniyetini artırmak ve gelirlerini maksimize etmektir. Bu amaçla, ERPNext adlı açık kaynaklı ve esnek bir ERP (Enterprise Resource Planning) platformu kullanılmaktadır. 
 
+
+
+## Q2: İş problemini çözmede kullanılacak data seti 
+
+#### Veri Setinin Detayları
+
+**Adres:** [Sales Data Analysis](https://www.kaggle.com/datasets/beekiran/sales-data-analysis)
+
+**İçerik:** Bu veri seti, teknoloji ürünleri satan bir mağazanın son 12 aydaki satış verilerini içerir. Her satır, bir ürün satışını temsil eder ve aşağıdaki özelliklere sahiptir:
+
+1. **Order ID:** Bir siparişin benzersiz kimliği.
+2. **Product:** Satın alınan ürünün adı veya tanımı.
+3. **Quantity Ordered:** Satın alınan ürün miktarı.
+4. **Price Each:** Birim ürün fiyatı.
+5. **Order Date:** Siparişin yapıldığı tarih ve saat.
+6. **Purchase Address:** Siparişin gönderileceği adres.
+7. **Month:** Siparişin yapıldığı ay.
+8. **Sales:** Siparişin toplam satış tutarı.
+9. **City:** Siparişin gönderileceği şehir.
+10. **Hour:** Siparişin yapıldığı saat.
+
+**Verinin Kaynağı:** Veri seti, Kaggle platformunda bulunan, kurgusal bir teknoloji ürünleri satan mağazanın örnek satış verilerinden oluşmaktadır.
+
+#### Veriyi Toplama ve Oluşturma Süreci
+
+Veriyi toplayan/yaratanlar, kurgusal bir mağazanın satış verilerini oluşturmak için gerçek dünya senaryolarını ve satış verilerini taklit etmişlerdir. Bu veri seti, mağazanın farklı zaman dilimlerinde ve farklı şehirlerde yapılan satışları içerecek şekilde tasarlanmıştır. Verilerin doğruluğu ve gerçek dünya senaryolarına uygunluğu göz önünde bulundurularak oluşturulmuştur.
+
+#### Veri Üzerinde Yapılan Değişiklikler
+
+- **Temizlik:** Veri setinde bulunan eksik veya hatalı kayıtlar temizlendi. Örneğin, eksik adres veya ürün bilgileri içeren kayıtlar silindi.
+- **Dönüştürme:** Tarih ve saat verileri, analizlerin daha kolay yapılabilmesi için uygun formatlara dönüştürüldü.
+- **Ek Sütunlar:** Satış tutarlarını daha kolay analiz edebilmek için `Sales` ve `Month` gibi ek sütunlar eklendi.
+
+
+
