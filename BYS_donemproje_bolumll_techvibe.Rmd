@@ -1,0 +1,20 @@
+---
+title: "Bilgi Yönetim Sistemleri - Bitirme Projesi Rapor:
+Kayra Öksüz - 200401043
+Şirvan Tedbirli - 210401104
+Selen Bal - 200401024
+Hicret Akkuç - 180401062"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+
+## Q1: İş probleminin tanımı
+
+Bu rapor, bir teknoloji mağazasının satış verilerini analiz ederek işletme performansını değerlendirmeyi ve stratejik kararlar almayı amaçlamaktadır. İş problemi, mağazanın satış süreçlerini optimize ederek müşteri memnuniyetini artırmak ve gelirlerini maksimize etmektir. Bu amaçla, ERPNext adlı açık kaynaklı ve esnek bir ERP (Enterprise Resource Planning) platformu kullanılmaktadır. 
+
