@@ -1,0 +1,115 @@
+---
+title: "Bilgi Yönetim Sistemleri Rapor 1"
+output: html_document
+---
+
+```
+Kayra Öksüz - 200401043
+Şirvan Tedbirli - 210401104
+Selen Bal - 200401024
+Hicret Akkuç - 180401062
+```
+
+
+## Q1 - IMS Platformunun Belirlenmesi
+
+**Platformun İsmi:** ERPNext
+
+**Lisansı:** GNU General Public License v3.0
+
+**Kısa Tarihçe:** ERPNext, WebNotes Technologies Pvt Ltd tarafından geliştirilmiştir. İlk olarak 2008 yılında piyasaya sürülen yazılım, hızla büyüyerek küresel bir topluluğa dönüşmüştür. Günümüzde aktif olarak geliştirilmekte ve kullanılmaktadır.
+
+**Özellikler:** Finans Yönetimi, Satış Yönetimi, Satın Alma ve Tedarik Zinciri Yönetimi, Stok Yönetimi, İnsan Kaynakları Yönetimi, Üretim Yönetimi, Proje Yönetimi, Raporlama ve Analiz
+Kullandığı Yazılım, DB ve Diğer Teknolojiler: Python programlama dili kullanılarak geliştirilmiş ve MongoDB veritabanını kullanmaktadır.
+
+**Platformun API'si:** ERPNext, RESTful API sağlar ve bu API aracılığıyla birçok özellik erişilebilir hale gelir.
+
+**Seçim Sebebi:** ERPNext, geniş işlevsellik yelpazesiyle iş süreçlerini tek bir platformda birleştirerek şirketlerin verimliliğini artırır. Açık kaynaklı ve özgür lisanslı olması, yazılımın istenilen şekilde özelleştirilebilmesine olanak tanırken, büyük ve aktif topluluğu sayesinde sürekli güncellenir ve geliştirilir. Modern teknolojiler kullanması, esneklik ve performans sağlarken, Docker ile kolay kurulumu ve kullanımı, hızlı şekilde işletmeye alınmasını sağlar.
+
+## Q2 - Dataset Tanımı
+
+**Adres:** [Sales Data Analysis](https://www.kaggle.com/datasets/beekiran/sales-data-analysis)
+
+**İçerik:** Bu veri seti, bir teknoloji ürünleri satan mağazanın son 12 aydaki satış verilerini içerir. Her satır, bir ürün satışını temsil eder ve aşağıdaki özelliklere sahiptir.
+
+1. Order ID: Bir siparişin benzersiz kimliği.
+2. Product: Satın alınan ürünün adı veya tanımı.
+3. Quantity Ordered: Satın alınan ürün miktarı.
+4. Price Each: Birim ürün fiyatı.
+5. Order Date: Siparişin yapıldığı tarih ve saat.
+6. Purchase Address: Siparişin gönderileceği adres.
+7. Month: Siparişin yapıldığı ay.
+8. Sales: Siparişin toplam satış tutarı.
+9. City: Siparişin gönderileceği şehir.
+10. Hour: Siparişin yapıldığı saat.
+
+**Verinin Üretimi/Toplanması:** Veri seti, teknoloji ürünleri satan kurgusal bir mağazanın örnek satış verilerinden oluşmaktadır ve Kaggle platformundan alınmıştır. 
+
+**Formatı:** CSV
+
+**Boyutu:** 22.44 MB (372.441 satır, 11 sütun)
+
+**Veriyi İthal Etme Planı:** Veri seti, CSV formatında olduğu için, ERPNext platformuna kolayca aktarılabilir. İilgili docker konteyenerına CSV dosyası kopyalanacak, ardından ERPNext'in sağladığı araçlar ile CSV dosyası platforma yüklenip ilgili veritabanı tablosuna aktarılacaktır.
+
+**Veriyi Çekme Planı:** Veriyi çekmek için, ERPNext'in sağladığı RESTful API'leri kullanmayı planlıyoruz. API'ler aracılığıyla platformdan veri alabilir ve R programlama dili ile çeşitli analizler yapabiliriz. Özellikle, RESTful API kullanarak veri alımı ve manipülasyonu için kolay bir yöntem olabilir.
+
+## Q3 - İş Tanımı
+
+Bu pozisyon, şirketimizin veri analisti departmanında çalışanlar için ERPNext kullanmasıdır. ERPNext, şirketin verilerini toplamak, depolamak, işlemek ve analiz etmek için kullanılan bir bilgi yönetim sistemidir. Şirket, müşteri siparişlerini, ürün satışlarını ve operasyonel verilerini takip etmek ve optimize etmek için ERPNext kullanmaktadır.
+
+### Aktiviteler ve Rutin Operasyonlar:
+
+1. Müşteri siparişlerini ve ürün satışlarını izlemek ve kaydetmek.
+2. Sipariş verme sürecini analiz etmek ve iyileştirmek.
+3. Veri tabanını güncellemek ve veri bütünlüğünü sağlamak.
+4. Satış verilerini aylık ve günlük raporlar halinde analiz etmek.
+5. Satış trendlerini belirlemek ve stok yönetimini optimize etmek.
+6. Müşteri adreslerini ve satış lokasyonlarını analiz etmek.
+
+### Gelir Modeli 
+
+  Şirket, ürün satışlarından elde edilen gelir üzerinden kazanç sağlar. Ürünlerin fiyatları ve miktarlarına göre değişen satış gelirleri, şirketin ana gelir kaynağını oluşturur. Ayrıca, müşterilere sunulan hizmetler veya ek ücretli özellikler de gelir modeline katkı sağlayabilir.
+
+### Zorluklar 
+
+  Büyük veri hacmi ile başa çıkma: Yüksek sipariş hacmi ve müşteri verisi, veri analizi ve işleme süreçlerini karmaşıklaştırabilir.
+Veri bütünlüğünün sağlanması: Müşteri adresleri ve satış verilerinin doğru ve güncel tutulması zor olabilir.
+Rekabetçi pazar: E-ticaret sektöründe rekabetin yüksek olması, müşteri kazanımı ve tutma stratejilerini karmaşıklaştırabilir.
+
+### Avantajlar
+
+**Veri analizi ile optimize edilmiş iş süreçleri:** ERPNext kullanarak yapılan veri analizi, işletmenin operasyonel verimliliğini artırabilir.
+
+**Satış trendlerinin belirlenmesi:** ERPNext, işletmeye satış trendleri hakkında önemli içgörüler sağlayarak stratejik karar alma süreçlerini destekleyebilir.
+
+**Müşteri memnuniyetinin artırılması:** Veri analizi sayesinde müşteri ihtiyaçları ve tercihleri daha iyi anlaşılabilir ve müşteri memnuniyeti artırılabilir.
+
+### Rakip Analizi:
+
+Rakiplerimiz genellikle büyük e-ticaret platformlarıdır, geniş ürün yelpazesi ve güçlü marka bilinirliği gibi avantajlara sahiptirler. Ancak, şirketimizin ERPNext kullanımıyla sağladığı veri analizi ve iş süreçlerinin optimize edilmesi konusundaki uzmanlığı, rekabet avantajı sağlar. Rakiplerimizin dezavantajı ise genellikle daha büyük ve karmaşık yapılarıdır, bu da karar alma süreçlerini yavaşlatabilir. Sonuç olarak, ERPNext kullanımı şirketimizi rekabetin önünde tutar ve müşteri memnuniyetini artırır.
+
+## Q4 - İyileştirme (Optimizasyon) Stratejisi
+
+Bu rapor, teknoloji mağazasının satış verilerini analiz ederek, işletmenin performansını değerlendirmek ve stratejik kararlar almak amacıyla hazırlanmıştır. Analizimiz üç temel başlık altında yapılmıştır: şehirlere göre ürün satışları, müşteri sadakati ve ürün performansı.
+
+1. Şehirlere Göre Ürün Satışları Analizi
+
+Satış verilerinin incelenmesi sonucunda, farklı şehirlerde hangi ürünlerin daha fazla talep gördüğünü belirlemek önemlidir. Bu bilgi, stok yönetimi ve talep tahmini açısından kritik bir rol oynamaktadır.
+
+Öneri: Şehirlere göre ürün satış adetlerini içeren grafikler oluşturarak, hangi ürünlerin hangi şehirlerde daha popüler olduğunu net bir şekilde görebiliriz. Bu analiz sonucunda, talebin yoğun olduğu şehirlere daha fazla stok gönderilmesi önerilmektedir. Böylece müşteri memnuniyeti artırılabilir ve kayıpların önüne geçilebilir.
+
+2. Müşteri Sadakati Analizi
+
+Tekrarlayan müşteriler, işletmenin sürekli gelir akışını sağlayan önemli bir unsurdur. Aynı alıcı adresinden farklı zamanlarda yapılan alımlar, müşteri sadakatinin bir göstergesi olabilir.
+
+Öneri: Tekrarlayan müşterilerin tespit edilmesi ve onlara özel indirimler veya teşvikler sunulması müşteri sadakatini artırabilir. Bu indirimler, müşteri memnuniyetini artırırken aynı zamanda müşteri bağlılığını da güçlendirecektir.
+
+3. Ürün Performansı Analizi
+
+Her ürünün satış performansını belirlemek, işletme için stratejik kararlar almak açısından hayati öneme sahiptir. Eğer bir ürün belirli bir eşik değerinin altında satılıyorsa, bu ürünün indirime tabi tutulması veya stoklardan kaldırılması gerekebilir.
+
+Öneri: Ürünlerin aylık satış performansını analiz ederek, düşük performans gösteren ürünlere özel indirimler uygulanabilir veya stoklardan kaldırılabilir. Bu sayede, işletme kaynaklarının daha verimli kullanılması sağlanabilir ve talep edilmeyen ürünlerin depolama maliyeti önlenmiş olur.
+
+### Sonuç
+
+Bu rapor, teknoloji mağazasının satış verileri üzerinden yapılan analizler ve çıkarılan önerileri içermektedir. Şehirlere göre ürün satışlarının analizi, müşteri sadakati ve ürün performansının değerlendirilmesi, işletmenin daha etkili bir şekilde yönetilmesini sağlayacaktır. Alınan stratejik kararlarla birlikte, işletmenin gelirini artırmak ve müşteri memnuniyetini yükseltmek mümkün olacaktır.
