@@ -1,0 +1,202 @@
+---
+title: "Bilgi Yönetim Sistemleri - Bitirme Projesi Rapor:
+Kayra Öksüz - 200401043
+Şirvan Tedbirli - 210401104
+Selen Bal - 200401024
+Hicret Akkuç - 180401062"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+
+## Q1: İş probleminin tanımı
+
+Bu rapor, bir teknoloji mağazasının satış verilerini analiz ederek işletme performansını değerlendirmeyi ve stratejik kararlar almayı amaçlamaktadır. İş problemi, mağazanın satış süreçlerini optimize ederek müşteri memnuniyetini artırmak ve gelirlerini maksimize etmektir. Bu amaçla, ERPNext adlı açık kaynaklı ve esnek bir ERP (Enterprise Resource Planning) platformu kullanılmaktadır. 
+
+## Q2: İş problemini çözmede kullanılacak data seti 
+
+#### Veri Setinin Detayları
+
+**Adres:** [Sales Data Analysis](https://www.kaggle.com/datasets/beekiran/sales-data-analysis)
+
+**İçerik:** Bu veri seti, teknoloji ürünleri satan bir mağazanın son 12 aydaki satış verilerini içerir. Her satır, bir ürün satışını temsil eder ve aşağıdaki özelliklere sahiptir:
+
+1. **Order ID:** Bir siparişin benzersiz kimliği.
+2. **Product:** Satın alınan ürünün adı veya tanımı.
+3. **Quantity Ordered:** Satın alınan ürün miktarı.
+4. **Price Each:** Birim ürün fiyatı.
+5. **Order Date:** Siparişin yapıldığı tarih ve saat.
+6. **Purchase Address:** Siparişin gönderileceği adres.
+7. **Month:** Siparişin yapıldığı ay.
+8. **Sales:** Siparişin toplam satış tutarı.
+9. **City:** Siparişin gönderileceği şehir.
+10. **Hour:** Siparişin yapıldığı saat.
+
+**Verinin Kaynağı:** Veri seti, Kaggle platformunda bulunan, kurgusal bir teknoloji ürünleri satan mağazanın örnek satış verilerinden oluşmaktadır.
+
+#### Veriyi Toplama ve Oluşturma Süreci
+
+Veriyi toplayan/yaratanlar, kurgusal bir mağazanın satış verilerini oluşturmak için gerçek dünya senaryolarını ve satış verilerini taklit etmişlerdir. Bu veri seti, mağazanın farklı zaman dilimlerinde ve farklı şehirlerde yapılan satışları içerecek şekilde tasarlanmıştır. Verilerin doğruluğu ve gerçek dünya senaryolarına uygunluğu göz önünde bulundurularak oluşturulmuştur.
+
+#### Veri Üzerinde Yapılan Değişiklikler
+
+- **Temizlik:** Veri setinde bulunan eksik veya hatalı kayıtlar temizlendi. Örneğin, eksik adres veya ürün bilgileri içeren kayıtlar silindi.
+- **Dönüştürme:** Tarih ve saat verileri, analizlerin daha kolay yapılabilmesi için uygun formatlara dönüştürüldü.
+- **Ek Sütunlar:** Satış tutarlarını daha kolay analiz edebilmek için `Sales` ve `Month` gibi ek sütunlar eklendi.
+
+
+## Q3: Veri seti keşifsel analizi 
+
+  Veri setimizde Hour isimli sütun hariç diğer tüm sütunlar iş problemimizi çözmek için gereklidir.
+
+```{r pressure, echo=FALSE}
+dosya_yolu <- "Sales_Data.csv"
+veri <- read.csv(dosya_yolu)
+
+# veri setinin bir kısmını inceliyoruz
+head(veri)
+
+# veri setimizdeki sütunların tipini öğreniyoruz
+sapply(veri, class)
+
+```
+
+
+```{r include=FALSE}
+# Eksik verileri kontrol etme
+sum(is.na(veri))
+
+# Order.Date sütununu Date-time formatına dönüştürme
+veri$Order.Date <- as.POSIXct(veri$Order.Date, format = "%Y-%m-%d %H:%M:%S")
+
+# Hour bilgisini analizlerimizde kullanmayacağımız için o sütunu kaldırıyoruz
+veri <- veri[, -which(names(veri) == "Hour")]
+
+# City sütunu kategorik olduğu için faktöre dönüştürüyoruz
+veri$City <- as.factor(veri$City)
+```
+
+## Q4: Veri setinin BYS platformuna ithali
+
+Veri setini ERPNext platformuna entegre etmek için izlenen adımlar aşağıda detaylı bir şekilde açıklanmıştır. Bu işlemde ERPNext'in RESTful API'si kullanılmış ve veri seti CSV formatından platforma aktarılmıştır.
+
+#### Adımlar
+
+1. **ERPNext Kurulumu:**
+   - Docker kullanılarak ERPNext platformu kuruldu.
+   - Docker konteynerında ERPNext'in çalışır hale getirilmesi sağlandı.
+
+2. **Veri Setinin Hazırlanması:**
+   - Kaggle'dan indirilen CSV dosyası gerekli temizlik ve dönüştürme işlemleri yapılarak uygun hale getirildi.
+   - Gereksiz sütunlar kaldırıldı, tarih formatları dönüştürüldü ve eksik veriler temizlendi.
+
+3. **Veri Setinin ERPNext'e Aktarılması:**
+   - ERPNext'in sağladığı panel kullanılarak CSV dosyasındaki veriler platforma aktarıldı.
+
+## Q5 : Yapılması planlanan veri analizi
+
+
+```{r include=FALSE}
+# Gerekli kütüphaneleri yükleyin
+library(httr)
+library(jsonlite)
+
+# ERPNext API URL'i
+url <- "http://localhost:8080/api/resource/newdoc/1"
+
+api_key <- "fa488bc46721e44"
+api_secret <- "091837bb3acec3f"
+
+# API anahtarlarını kullanarak Authorization başlığı oluşturma
+headers <- add_headers(
+  "Authorization" = paste("token", api_key, ":", api_secret)
+)
+
+# GET isteğini yap
+response <- GET(url, headers)
+
+# Yanıtı kontrol et ve verileri al
+if (status_code(response) == 200) {
+  data <- content(response, as = "text", encoding = "UTF-8")
+  json_data <- fromJSON(data)
+  print(json_data)
+} else {
+  cat("İstek başarısız oldu. Durum kodu:", status_code(response), "\n")
+  cat(content(response, as = "text", encoding = "UTF-8"), "\n")  # Hata mesajını yazdır
+}
+
+```
+
+#### MÜŞTERİ SADAKATİ ANALİZİ
+
+Tekrarlayan müşterilerin tespit edilmesi ve alışveriş sayılarının hesaplanması, ardından birkaç satırın görüntülenmesi
+
+```{r, echo=FALSE}
+# Tekrarlayan müşterilerin tespit edilmesi ve alışveriş sayılarının hesaplanması
+tekrarlayan_musteriler <- veri %>% group_by(Purchase.Address) %>% summarise(Satis_Sayisi = n()) %>% filter(Satis_Sayisi > 1) %>% arrange(desc(Satis_Sayisi))
+
+# İlk birkaç satırı görüntüleme
+head(tekrarlayan_musteriler)
+```
+
+Tekrarlayan müşterilerin toplam ve ortalama satışlarını hesaplama ve birkaç satır gösterme
+```{r, echo=FALSE}
+# Tekrarlayan müşterilerin toplam ve ortalama satışlarını hesaplama
+musteri_analizi <- veri %>% filter(Purchase.Address %in% tekrarlayan_musteriler$Purchase.Address) %>% group_by(Purchase.Address) %>% summarise(Toplam_Satis = sum(Sales), Ortalama_Satis = mean(Sales), Satis_Sayisi = n()) %>% arrange(desc(Satis_Sayisi))
+
+# İlk birkaç satırı görüntüleme
+head(musteri_analizi)
+```
+
+Teşvik stratejisi oluşturma ve ilk birkaç satırı görüntüleme
+```{r, echo=FALSE}
+# Teşvik stratejisi oluşturma
+musteri_analizi <- musteri_analizi %>% mutate(Tesvik = ifelse(Satis_Sayisi >= 5, "10% indirim", ifelse(Satis_Sayisi >= 3, "5% indirim", "Tesvik yok")))
+
+# İlk birkaç satırı görüntüleme
+head(musteri_analizi)
+```
+
+#### ŞEHİRLERE GÖRE ÜRÜN SATIŞINI ANALİZ ETME
+```{r, echo=FALSE}
+#ŞEHİRLERE GÖRE ÜRÜN SATIŞINI ANALİZ ETME
+
+ggplot(veri, aes(x = City, y = Sales, fill = City)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sehir Bazında Satislar", x = "Sehir", y = "Satis") +
+  scale_fill_brewer(palette = "Set3")  # Renk paleti
+```
+
+#### ÜRÜN PERFORMANSI ANALİZİ
+
+```{r, echo=FALSE}
+# Aylık satışları toplama
+veri$Order.Date <- as.Date(veri$Order.Date)  # Tarih sütununu uygun formata dönüştürme
+
+veri <- veri %>%
+  mutate(YearMonth = format(Order.Date, "%Y-%m"))  # Yıl ve ayı içeren yeni bir sütun oluşturma
+
+urun_performansi <- veri %>%
+  group_by(Product, YearMonth) %>%
+  summarise(Satis_Sayisi = n(), .groups = "drop") %>%
+  arrange(Product, YearMonth)
+
+# Her bir ürünün toplam satış adedini aylık olarak gösteren çizgi grafiği
+ggplot(urun_performansi, aes(x = YearMonth, y = Satis_Sayisi)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Aylik Urun Satis Performansi", x = "Yil-Ay", y = "Satıs Sayisi", fill = "Urun")
+```
+
+
+## Q6 : Çalışan platformun gösterildiği sesli anlatımlı video
+
+[Video](https://www.youtube.com/watch?v=K_gCFovDxqg)
+
+
